@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown to HTML Converter - Convert MD to HTML Online</title>
+  <meta name="description" content="Free online Markdown to HTML converter. Convert Markdown syntax to clean HTML code instantly with live preview.">
+  <meta name="keywords" content="markdown to html, md to html, markdown converter, convert markdown, free online">
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-8581458440606037" crossorigin="anonymous"></script>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #1a1a1a; color: #e0e0e0; min-height: 100vh; }
+    .container { max-width: 1400px; margin: 0 auto; padding: 20px; }
+    h1 { text-align: center; margin: 20px 0; font-size: 2rem; }
+    .subtitle { text-align: center; color: #888; margin-bottom: 20px; }
+    .editor-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .panel { background: #252525; border-radius: 12px; overflow: hidden; }
+    .panel-header { background: #333; padding: 12px 20px; font-weight: 600; display: flex; justify-content: space-between; align-items: center; }
+    textarea { width: 100%; height: 500px; padding: 20px; background: #1a1a1a; color: #e0e0e0; border: none; font-family: 'SF Mono', Consolas, monospace; font-size: 14px; line-height: 1.6; resize: vertical; }
+    textarea:focus { outline: none; }
+    .preview { padding: 20px; height: 500px; overflow: auto; background: #fff; color: #333; }
+    .preview h1, .preview h2, .preview h3 { margin: 1em 0 0.5em; color: #111; }
+    .preview p { margin: 0.5em 0; line-height: 1.7; }
+    .preview code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-family: monospace; }
+    .preview pre { background: #f5f5f5; padding: 15px; border-radius: 8px; overflow-x: auto; }
+    .preview pre code { background: none; padding: 0; }
+    .preview ul, .preview ol { margin: 0.5em 0 0.5em 2em; }
+    .preview blockquote { border-left: 4px solid #ddd; padding-left: 15px; margin: 1em 0; color: #666; }
+    .preview a { color: #0066cc; }
+    .preview img { max-width: 100%; }
+    .preview table { border-collapse: collapse; margin: 1em 0; }
+    .preview th, .preview td { border: 1px solid #ddd; padding: 8px 12px; }
+    .preview th { background: #f5f5f5; }
+    .btn { padding: 8px 16px; background: #4a9eff; color: #fff; border: none; border-radius: 6px; cursor: pointer; font-size: 0.9rem; }
+    .btn:hover { background: #3a8eef; }
+    .btn.secondary { background: #444; }
+    .html-output { display: none; }
+    .ad-space { background: #252525; padding: 20px; text-align: center; margin: 20px 0; border-radius: 12px; }
+    footer { text-align: center; padding: 30px; color: #666; }
+    a { color: #4a9eff; }
+    @media (max-width: 900px) { .editor-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>📝 Markdown to HTML</h1>
+    <p class="subtitle">Convert Markdown to clean HTML with live preview</p>
+    
+    <div class="ad-space">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8581458440606037" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    
+    <div class="editor-grid">
+      <div class="panel">
+        <div class="panel-header">
+          <span>Markdown Input</span>
+          <button class="btn secondary" onclick="loadSample()">Load Sample</button>
+        </div>
+        <textarea id="markdown" placeholder="Type your Markdown here..."></textarea>
+      </div>
+      
+      <div class="panel">
+        <div class="panel-header">
+          <span>Preview</span>
+          <div>
+            <button class="btn" onclick="copyHTML()">Copy HTML</button>
+          </div>
+        </div>
+        <div class="preview" id="preview"></div>
+      </div>
+    </div>
+    
+    <div class="panel" style="margin-top:20px;">
+      <div class="panel-header">
+        <span>HTML Output</span>
+      </div>
+      <textarea id="htmlOutput" style="height:200px;" readonly></textarea>
+    </div>
+    
+    <div class="ad-space">
+      <ins class="adsbygoogle" style="display:block" data-ad-client="ca-pub-8581458440606037" data-ad-slot="auto" data-ad-format="auto" data-full-width-responsive="true"></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
+    </div>
+    
+    <footer>
+      <p>Made with ❤️ | <a href="https://vvonha.github.io/crypto-funding-scanner/">More Free Tools</a></p>
+    </footer>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    const markdownInput = document.getElementById('markdown');
+    const preview = document.getElementById('preview');
+    const htmlOutput = document.getElementById('htmlOutput');
+    
+    marked.setOptions({
+      breaks: true,
+      gfm: true
+    });
+    
+    markdownInput.addEventListener('input', convert);
+    
+    function convert() {
+      const md = markdownInput.value;
+      const html = marked.parse(md);
+      preview.innerHTML = html;
+      htmlOutput.value = html;
+    }
+    
+    function copyHTML() {
+      navigator.clipboard.writeText(htmlOutput.value);
+      alert('HTML copied!');
+    }
+    
+    function loadSample() {
+      markdownInput.value = `# Hello World
+
+This is a **Markdown** to HTML converter.
+
+## Features
+
+- Live preview
+- Copy HTML output
+- Supports GFM (GitHub Flavored Markdown)
+
+### Code Example
+
+\`\`\`javascript
+const greeting = "Hello!";
+console.log(greeting);
+\`\`\`
+
+> This is a blockquote
+
+| Column 1 | Column 2 |
+|----------|----------|
+| Cell 1   | Cell 2   |
+
+[Link Example](https://example.com)
+`;
+      convert();
+    }
+    
+    loadSample();
+  </script>
+</body>
+</html>
